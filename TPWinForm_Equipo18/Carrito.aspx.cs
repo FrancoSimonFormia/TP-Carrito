@@ -15,6 +15,7 @@ namespace TPWinForm_Equipo18
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            
             Articulo ar1 = new Articulo();
             Articulo ar2 = new Articulo();
             Articulo ar3 = new Articulo();
@@ -36,8 +37,8 @@ namespace TPWinForm_Equipo18
             ima1.IDArticulo = 1;
             ima2.IDArticulo = 1;
 
-            ima1.Url = "";
-            ima2.Url = "";
+            ima1.Url = "https://hard-digital.com.ar/public/files/Notebook%20Hp%20240%20G9%2014%20Celeron%20N4500%208Gb%20256Gb%20W11h/4.jpg";
+            ima2.Url = "https://d1sfzvg6s5tf2e.cloudfront.net/Custom/Content/Products/07/90/0790_notebook-hp-amd-ryzen-5-8g256sdsilver_l1_638007471633826105.jpg";
 
             cat1.ID = 1;
             cat2.ID = 2;
@@ -90,7 +91,13 @@ namespace TPWinForm_Equipo18
             listaCarrito.Add(ar1);
             listaCarrito.Add(ar2);
             listaCarrito.Add(ar3);
-            Title = "Aqui podremos ver todo lo contenido dentro del carrito ";  
+            Title = "Mi carrito";
+            listaCount.Text = "  (" + listaCarrito.Count.ToString() + " productos)";
+            lblSeguirComprando.Text = "seguir comprando";
+            dgvArticulos.DataSource = listaCarrito;
+            dgvArticulos.DataBind();
+
+            
 
         }
     }

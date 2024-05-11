@@ -1,0 +1,41 @@
+﻿body {
+    
+
+}
+
+
+.img{
+    border-radius: 10px;
+    width: 100px;
+    height: 100px;
+
+}
+
+
+
+.col {
+    display: inline;
+    
+}
+
+.ContenedorCompra {
+    display: flex;
+    justify-content: center;
+}
+
+.tarjetaCompra {
+    background-color: lightseagreen;
+    justify-content: center;
+    border-radius: 30px;
+    border: 1px solid #ccc;
+    padding: 20px;
+  
+}
+
+    .tarjetaCompra > div {
+        margin-bottom: 10px;
+    }
+
+.lblCompra1 {
+    font-weight: bold;
+}

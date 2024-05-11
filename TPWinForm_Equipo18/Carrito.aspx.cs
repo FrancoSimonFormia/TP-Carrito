@@ -3,6 +3,7 @@ using negocio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -19,6 +20,7 @@ namespace TPWinForm_Equipo18
             Articulo ar1 = new Articulo();
             Articulo ar2 = new Articulo();
             Articulo ar3 = new Articulo();
+            Articulo ar4 = new Articulo();
 
             Marca mar1 = new Marca();
             Marca mar2 = new Marca();
@@ -88,17 +90,21 @@ namespace TPWinForm_Equipo18
             ar1.imagenes.Add(ima1);
             ar1.imagenes.Add(ima2);
 
+            ar4 = ar1;
+
             listaCarrito.Add(ar1);
             listaCarrito.Add(ar2);
             listaCarrito.Add(ar3);
             Title = "Mi carrito";
             listaCount.Text = "  (" + listaCarrito.Count.ToString() + " productos)";
             lblSeguirComprando.Text = "seguir comprando";
-            dgvArticulos.DataSource = listaCarrito;
-            dgvArticulos.DataBind();
-
+            
+            GridCarrito.DataSource = listaCarrito;
+            GridCarrito.DataBind();
             
 
         }
+
+        
     }
 }

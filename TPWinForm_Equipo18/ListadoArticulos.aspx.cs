@@ -20,8 +20,6 @@ namespace TPWinForm_Equipo18
                 {
                     ArticuloNegocio negocio = new ArticuloNegocio();
                     List<Articulo> articulos = negocio.listar();
-
-                    // Agrupar los artículos por su ID para eliminar duplicados
                     Articulos = articulos.GroupBy(a => a.id).Select(g => g.First()).ToList();
                 }
                 catch (Exception ex)
@@ -30,20 +28,99 @@ namespace TPWinForm_Equipo18
                     Response.Redirect("Error.aspx");
                 }
 
+
                 repRepetidor.DataSource = Articulos;
                 repRepetidor.DataBind();
             }
         }
-        protected void btnDetalles_Click(object sender, EventArgs e)
+
+        protected void btnBuscar_Click(object sender, EventArgs e)
         {
-           
+            try
+            {
+                ArticuloNegocio negocio = new ArticuloNegocio();
+                List<Articulo> articulos = negocio.listar();
+                string busqueda = txtBuscar.Text.ToLower();
+                Articulos = articulos.FindAll(x => x.nombre.ToLower().Contains(txtBuscar.Text.ToLower()) || x.codigo.ToLower().Contains(txtBuscar.Text.ToLower()) || x.marcaArticulo.descripcion.ToLower().Contains(txtBuscar.Text.ToLower()) || x.categoriaArticulo.Descripcion.ToLower().Contains(txtBuscar.Text.ToLower()));
+                repRepetidor.DataSource = Articulos;
+                repRepetidor.DataBind();
+            }
+            catch (Exception ex)
+            {
+                Session["Error"] = ex.Message;
+                Response.Redirect("Error.aspx");
+            }
         }
-        protected void btnAgregarCarrito_Click(object sender, EventArgs e)
+
+        protected void btnDetalles_Click(object sender, EventArgs e)
         {
             Button btn = (Button)sender;
             string id = btn.CommandArgument;
-            Response.Redirect("Carrito.aspx?idArticulo=" + id);
+            int identero = int.Parse(id);
+            Articulo DetalleArticulo = new Articulo();
+            ArticuloNegocio negocio = new ArticuloNegocio();
+            List<Articulo> listaParaBuscarArticuloDetalle = negocio.listar();
+            DetalleArticulo = listaParaBuscarArticuloDetalle.Find(x => x.id == identero);
+
+            if (DetalleArticulo != null)
+            {
+                Session.Add("DetalleArticulo", DetalleArticulo);
+                Response.Redirect("Detalles.aspx");
+            }
+            else
+            {
+                Session["Error"] = "No se encontro el articulo";
+                Response.Redirect("Error.aspx");
+            }
+
+
         }
 
+        protected void btnAgregarCarrito_Click(object sender, EventArgs e)
+        {
+                Button btn = (Button)sender;
+                string id = btn.CommandArgument;
+                int identero = int.Parse(id);
+                Articulo articuloParaElCarrito = new Articulo();
+                 ArticuloNegocio negocio = new ArticuloNegocio();
+                List<Articulo> listaParaagregaralcarrito = negocio.listar();
+
+            articuloParaElCarrito = listaParaagregaralcarrito.Find(x => x.id == identero);
+            
+            
+
+            if (articuloParaElCarrito != null)
+            {
+                if (Session["Carrito"] == null)
+                {
+                    List<Articulo> carrito = new List<Articulo>();
+                    carrito.Add(articuloParaElCarrito);
+                    Session.Add("Carrito", carrito);
+                    ClientScript.RegisterStartupScript(this.GetType(), "mensaje", "alert('Artículo agregado al carrito exitosamente');", true);
+                }
+                else
+                {
+                    List<Articulo> carrito = (List<Articulo>)Session["Carrito"];
+                    carrito.Add(articuloParaElCarrito);
+                    Session["Carrito"] = carrito;
+                    ClientScript.RegisterStartupScript(this.GetType(), "mensaje", "alert('Artículo agregado al carrito exitosamente');", true);
+
+                }
+            }
+            else
+            {
+                Session["Error"] = "No se encontro el articulo";
+                Response.Redirect("Error.aspx");
+            }
+
+
+        }
+               
+
+        }
+
+
     }
-}
+
+
+   

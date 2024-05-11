@@ -41,6 +41,7 @@
             </div>
             <div class="product__info">
                 <h2><%: seleccion.nombre %></h2>
+                <span> <%: seleccion.codigo %> </span>
                 <p><%: seleccion.descripcion %></p>
                 <span>$<%: seleccion.precio %></span>
 

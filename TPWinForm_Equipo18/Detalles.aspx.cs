@@ -16,7 +16,7 @@ namespace TPWinForm_Equipo18
 
         private void inicializarArticulo(int idArticulo)
         {
-            foreach (Articulo articulo in coleccion)
+            foreach (dominio.Articulo articulo in coleccion)
             {
                 if(articulo.id == idArticulo)
                 {
@@ -24,6 +24,49 @@ namespace TPWinForm_Equipo18
                     break;
                 }
             }
+        }
+
+        private void validarCampos()
+        {
+
+            ///Validacion en caso de que algún dato esté omitido en la DB
+            ///Podemos hacer que, en vez de mostrar estos datos, se cargue 
+            ///un mensaje de "Articulo inexistente" en base a la gravedad
+            ///del dato omitido
+
+            if(seleccion.marcaArticulo == null)
+            {
+                Marca porDefault = new Marca();
+                porDefault.descripcion = "N/A";
+                porDefault.id = -1;
+
+                seleccion.marcaArticulo = porDefault;
+            }
+
+            if(seleccion.categoriaArticulo == null)
+            {
+                Categoria porDefault = new Categoria();
+                porDefault.Descripcion = "N/A";
+                porDefault.ID = -2;
+
+                seleccion.categoriaArticulo = porDefault;
+            }
+
+            if(seleccion.descripcion == null)
+            {
+                seleccion.descripcion = "N/A";
+            }
+
+            if(seleccion.nombre == null)
+            {
+                seleccion.nombre = "N/A";
+            }
+
+            if(seleccion.codigo == null)
+            {
+                seleccion.codigo = "N/A";
+            }
+
         }
 
         private void cargarImagenes()
@@ -48,7 +91,8 @@ namespace TPWinForm_Equipo18
             ArticuloNegocio negocio = new ArticuloNegocio();
             coleccion = negocio.listar();
 
-            inicializarArticulo(2);
+            inicializarArticulo(1);
+            validarCampos();
             cargarImagenes();
             Title = seleccion.nombre;
 

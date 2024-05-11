@@ -102,6 +102,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Detalles.css" />
     <Content Include="Detalles.aspx" />
     <Content Include="Carrito.aspx" />
     <Content Include="Content\bootstrap-grid.css" />

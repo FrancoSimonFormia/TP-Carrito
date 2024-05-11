@@ -1,0 +1,53 @@
+﻿@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
+
+
+
+.product {
+    display: flex;
+    flex-direction: row;
+    width: max-content;
+    font-family: 'Poppins', sans-serif;
+}
+
+
+.product__images{
+    height: 300px;
+}
+
+.carousel {
+    width: 250px;
+}
+
+
+.carousel-item img {
+    display: block;
+    width: 250px;
+    height: 250px;
+}
+
+
+
+.carousel-indicator img {
+    width: 70px;
+    display: block;
+}
+
+.carousel-indicator button {
+    width: max-content !important;
+}
+
+.carousel-indicator {
+    position: unset;
+}
+
+.carousel-indicators button img {
+    position: relative;
+    left: 500px;
+    top: 50px;
+}
+
+.carousel-indicators button.active img {
+    border: 2px solid blue;
+}
+
+

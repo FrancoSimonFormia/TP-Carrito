@@ -39,7 +39,21 @@
                 </div>
 
             </div>
+            <div class="product__info">
+                <h2><%: seleccion.nombre %></h2>
+                <p><%: seleccion.descripcion %></p>
+                <span>$<%: seleccion.precio %></span>
 
+                <div class="product__filters">
+                    <span>Marca: <%: seleccion.marcaArticulo.ToString() %></span>
+                </div>
+                <div class="product__filters">
+                    <span>Categoría: <%: seleccion.categoriaArticulo.ToString() %></span>
+                </div>
+
+                <asp:Button Text="Agregar" CssClass="btn btn-success" ID="btnAgregar" runat="server" />
+
+            </div>
         </section>
 
 

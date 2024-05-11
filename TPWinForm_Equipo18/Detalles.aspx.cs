@@ -28,12 +28,6 @@ namespace TPWinForm_Equipo18
 
         private void cargarImagenes()
         {
-            /*
-            seleccion.id = 1;
-            seleccion.nombre = "A24";
-            seleccion.descripcion = "Un teléfono más...";
-            seleccion.precio = 299000;
-            */
 
             ArticuloNegocio negocio = new ArticuloNegocio();
             List<Imagen> imagenes = new List<Imagen>();

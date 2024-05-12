@@ -17,16 +17,17 @@ namespace TPWinForm_Equipo18
             if (!IsPostBack)
             {
                 try
-                {
+              {
                     ArticuloNegocio negocio = new ArticuloNegocio();
-                    List<Articulo> articulos = negocio.listar();
-                    Articulos = articulos.GroupBy(a => a.id).Select(g => g.First()).ToList();
+                    Articulos = negocio.listar();
+                    Articulos = Articulos.GroupBy(a => a.id).Select(g => g.First()).ToList();
+
                 }
-                catch (Exception ex)
+               catch (Exception ex)
                 {
                     Session["Error"] = ex.Message;
                     Response.Redirect("Error.aspx");
-                }
+               }
 
 
                 repRepetidor.DataSource = Articulos;
@@ -41,7 +42,8 @@ namespace TPWinForm_Equipo18
                 ArticuloNegocio negocio = new ArticuloNegocio();
                 List<Articulo> articulos = negocio.listar();
                 string busqueda = txtBuscar.Text.ToLower();
-                Articulos = articulos.FindAll(x => x.nombre.ToLower().Contains(txtBuscar.Text.ToLower()) || x.codigo.ToLower().Contains(txtBuscar.Text.ToLower()) || x.marcaArticulo.descripcion.ToLower().Contains(txtBuscar.Text.ToLower()) || x.categoriaArticulo.Descripcion.ToLower().Contains(txtBuscar.Text.ToLower()));
+                articulos = articulos.FindAll(x => x.nombre.ToLower().Contains(txtBuscar.Text.ToLower()) || x.codigo.ToLower().Contains(txtBuscar.Text.ToLower()) || x.marcaArticulo.descripcion.ToLower().Contains(txtBuscar.Text.ToLower()) || x.categoriaArticulo.Descripcion.ToLower().Contains(txtBuscar.Text.ToLower()));
+                Articulos = articulos.GroupBy(a => a.id).Select(g => g.First()).ToList();
                 repRepetidor.DataSource = Articulos;
                 repRepetidor.DataBind();
             }

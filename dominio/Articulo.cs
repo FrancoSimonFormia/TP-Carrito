@@ -28,7 +28,9 @@ namespace dominio
         public List<Imagen> imagenes { get; set; }
         public int cantidad { get; set; }
 
-        
+        /*
+            AGREGUE DOS PROPIEDADES, NO SE SI ES LO CORRECTO PERO PROBÉ VARIAS COSAS Y SOLO FUNCIONÓ ESTO 
+         */
 
         
     }

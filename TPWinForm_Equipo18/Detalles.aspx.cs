@@ -14,16 +14,10 @@ namespace TPWinForm_Equipo18
         public Articulo seleccion = new Articulo();
         public List<Articulo> coleccion = new List<Articulo>();
 
-        private void inicializarArticulo(int idArticulo)
+        private void inicializarArticulo()
         {
-            foreach (dominio.Articulo articulo in coleccion)
-            {
-                if(articulo.id == idArticulo)
-                {
-                    seleccion = articulo;
-                    break;
-                }
-            }
+            seleccion = (Articulo)Session["DetalleArticulo"];
+
         }
 
         private void validarCampos()
@@ -91,7 +85,7 @@ namespace TPWinForm_Equipo18
             ArticuloNegocio negocio = new ArticuloNegocio();
             coleccion = negocio.listar();
 
-            inicializarArticulo(1);
+            inicializarArticulo();
             validarCampos();
             cargarImagenes();
             Title = seleccion.nombre;

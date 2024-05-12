@@ -52,7 +52,7 @@
                     <span>Categoría: <%: seleccion.categoriaArticulo.ToString() %></span>
                 </div>
 
-                <asp:Button Text="Agregar" CssClass="btn btn-success" ID="btnAgregar" runat="server" />
+                <asp:Button Text="Agregar" CssClass="btn btn-success" ID="btnAgregar" runat="server" OnClick="btnAgregar_Click"/>
 
             </div>
         </section>

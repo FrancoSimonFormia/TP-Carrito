@@ -27,9 +27,8 @@ namespace TPWinForm_Equipo18
             ///Podemos hacer que, en vez de mostrar estos datos, se cargue 
             ///un mensaje de "Articulo inexistente" en base a la gravedad
             ///del dato omitido
-
-            if(seleccion.marcaArticulo == null)
-            {
+            if (seleccion.marcaArticulo == null)
+            {  
                 Marca porDefault = new Marca();
                 porDefault.descripcion = "N/A";
                 porDefault.id = -1;
@@ -37,7 +36,7 @@ namespace TPWinForm_Equipo18
                 seleccion.marcaArticulo = porDefault;
             }
 
-            if(seleccion.categoriaArticulo == null)
+            if (seleccion.categoriaArticulo == null)
             {
                 Categoria porDefault = new Categoria();
                 porDefault.Descripcion = "N/A";
@@ -46,20 +45,21 @@ namespace TPWinForm_Equipo18
                 seleccion.categoriaArticulo = porDefault;
             }
 
-            if(seleccion.descripcion == null)
+            if (seleccion.descripcion == null)
             {
                 seleccion.descripcion = "N/A";
             }
 
-            if(seleccion.nombre == null)
+            if (seleccion.nombre == null)
             {
                 seleccion.nombre = "N/A";
             }
 
-            if(seleccion.codigo == null)
+            if (seleccion.codigo == null)
             {
                 seleccion.codigo = "N/A";
             }
+            
 
         }
 
@@ -74,21 +74,43 @@ namespace TPWinForm_Equipo18
                 imagenes = negocio.generarListaImagenes(seleccion.id);
                 seleccion.imagenes = imagenes;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw ex;
             }
         }
 
         protected void Page_Load(object sender, EventArgs e)
-        {
+         {
             ArticuloNegocio negocio = new ArticuloNegocio();
             coleccion = negocio.listar();
-
             inicializarArticulo();
             validarCampos();
             cargarImagenes();
             Title = seleccion.nombre;
+
+
+        }
+
+        protected void btnAgregar_Click(object sender, EventArgs e)
+        {
+           
+            if (Session["Carrito"] == null)
+            {
+                List<Articulo> carrito = new List<Articulo>();
+                carrito.Add(seleccion);
+                Session.Add("Carrito", carrito);
+                ClientScript.RegisterStartupScript(this.GetType(), "mensaje", "alert('Artículo agregado al carrito exitosamente');", true);
+            }
+            else
+            {
+                List<Articulo> carrito = (List<Articulo>)Session["Carrito"];
+                carrito.Add(seleccion);
+                Session["Carrito"] = carrito;
+                ClientScript.RegisterStartupScript(this.GetType(), "mensaje", "alert('Artículo agregado al carrito exitosamente');", true);
+
+
+            }
 
 
         }

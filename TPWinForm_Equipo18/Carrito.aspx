@@ -39,7 +39,7 @@
 
                         <asp:TemplateField HeaderText="">
                             <ItemTemplate>
-                                <asp:ImageButton ID="btnEliminar" runat="server" ImageUrl="b.png" CommandName="sumarArticulo" CommandArgument='<%# Eval("ID") %>' />
+                                <asp:ImageButton ID="btnEliminar" OnClick="btnEliminar_Click" runat="server" ImageUrl="b.png" CommandName="sumarArticulo" CommandArgument='<%# Eval("ID") %>' />
                             </ItemTemplate>
                         </asp:TemplateField>
                     
@@ -52,18 +52,19 @@
             <div class="tarjetaCompra">
                 <div>
                     <label class="lblCompra1">Subtotal:</label>
-                    <asp:Label ID="lblsubtot" runat="server" Text="Label"></asp:Label>
+                    <asp:Label ID="lblsubtot" runat="server" Text=""></asp:Label>
                 </div>
+                
                 <div>
                     <label class="lblCompra1">Costo de envío:</label>
-                    <asp:Label ID="lblenvio" runat="server" Text="Label"></asp:Label>
+                    <asp:Label ID="lblenvio" runat="server" Text=""></asp:Label>
                 </div>
                 <div>
                     <label class="lblCompra1">Total:</label>
                     <asp:Label ID="lbltotal" runat="server" Text="Label"></asp:Label>
                 </div>
                 <div>
-                    <asp:Button CssClass="btn btn-primary btn-lg" ID="btnCompra" runat="server" Text="Ir a comprar" />
+                    <asp:Button CssClass="btn btn-primary btn-lg" ID="btnCompra" runat="server" Text="Ir a comprar" OnClick="btnCompra_Click" />
                 </div>
             </div>
         </div>

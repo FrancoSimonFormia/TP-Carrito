@@ -16,7 +16,40 @@ namespace TPWinForm_Equipo18
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            decimal env = 5000;
+            Title = "Mi carrito";
+            listaCount.Text = "  (" + listaCarrito.Count.ToString() + " productos)";
+            lblSeguirComprando.Text = "seguir comprando";
+
+            GridCarrito.DataSource = hardcodearLista();
+            GridCarrito.DataBind();
+            lblsubtot.Text = "$" + subtotalArticulos().ToString();
+            decimal sub = subtotalArticulos();
+            lblenvio.Text = "$5000";           
+            decimal total = env + sub;
+            lbltotal.Text = "$" + total.ToString();
             
+
+        }
+        public decimal subtotalArticulos()
+        {
+            decimal subtotal = 0;
+
+            foreach (Articulo item in listaCarrito)
+            {
+                subtotal += item.precio;
+            }
+                      
+            return subtotal;
+        }
+
+
+
+
+
+
+        public List<Articulo> hardcodearLista()
+        {
             Articulo ar1 = new Articulo();
             Articulo ar2 = new Articulo();
             Articulo ar3 = new Articulo();
@@ -95,16 +128,20 @@ namespace TPWinForm_Equipo18
             listaCarrito.Add(ar1);
             listaCarrito.Add(ar2);
             listaCarrito.Add(ar3);
-            Title = "Mi carrito";
-            listaCount.Text = "  (" + listaCarrito.Count.ToString() + " productos)";
-            lblSeguirComprando.Text = "seguir comprando";
-            
-            GridCarrito.DataSource = listaCarrito;
-            GridCarrito.DataBind();
-            
+
+
+
+            return listaCarrito;
+        }
+
+        protected void btnCompra_Click(object sender, EventArgs e)
+        {
 
         }
 
-        
+        protected void btnEliminar_Click(object sender, ImageClickEventArgs e)
+        {
+            listaCarrito.RemoveAll(listaCarrito.Contains);
+        }
     }
 }

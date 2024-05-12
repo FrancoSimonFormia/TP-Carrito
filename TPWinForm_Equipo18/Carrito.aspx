@@ -16,30 +16,36 @@
         
                 <asp:GridView ID="GridCarrito" runat="server" AutoGenerateColumns="false" CssClass="table align-baseline w-75 border-0" >
                     <Columns>
-                        <asp:TemplateField HeaderText="">
+                        <asp:TemplateField HeaderText="imagen">
                         <ItemTemplate>
                             <asp:Image runat="server" ImageUrl='<%# Eval("imagenes[0].Url") %>' Alt="Imagen de artículo" Width="150px" Height="150px" />
                         </ItemTemplate>
                     </asp:TemplateField>
                     
-                        <asp:BoundField HeaderText="" DataField="nombre" />
-                        <asp:BoundField HeaderText="" DataField="precio" />
+                        <asp:BoundField HeaderText="nombre" DataField="nombre" />
+                        <asp:BoundField HeaderText="precio" DataField="precio" />
+                        
 
-                         <asp:TemplateField HeaderText="">
+                         <asp:TemplateField HeaderText="sacar">
                         <ItemTemplate>
                             <asp:Button CssClass="btn btn-danger rounded-5" ID="btnRestar" runat="server" Text="-" CommandName="RestarArticulo" CommandArgument='<%# Eval("ID") %>' />
                         </ItemTemplate>
                     </asp:TemplateField>
 
-                    <asp:TemplateField HeaderText="">
+                        <asp:BoundField HeaderText="cantidad" DataField="cantidad"/>
+                        
+
+                    <asp:TemplateField HeaderText="agregar">
                         <ItemTemplate>
                             <asp:Button CssClass="btn btn-success rounded-5" ID="btnSumar" runat="server" Text="+" CommandName="sumarArticulo" CommandArgument='<%# Eval("ID") %>' />
                         </ItemTemplate>
                     </asp:TemplateField>
 
-                        <asp:TemplateField HeaderText="">
+                      <asp:BoundField HeaderText="TotalArticulo" DataField="total" />
+
+                        <asp:TemplateField HeaderText="eliminar">
                             <ItemTemplate>
-                                <asp:ImageButton ID="btnEliminar" OnClick="btnEliminar_Click" runat="server" ImageUrl="b.png" CommandName="sumarArticulo" CommandArgument='<%# Eval("ID") %>' />
+                                <asp:ImageButton ID="btnEliminar" OnClick="btnEliminar_Click" runat="server" ImageUrl="b.png" CommandName="EliminarArticulo" CommandArgument='<%# Eval("ID") %>' />
                             </ItemTemplate>
                         </asp:TemplateField>
                     
@@ -61,7 +67,7 @@
                 </div>
                 <div>
                     <label class="lblCompra1">Total:</label>
-                    <asp:Label ID="lbltotal" runat="server" Text="Label"></asp:Label>
+                    <asp:Label ID="lbltotal" runat="server" Text=""></asp:Label>
                 </div>
                 <div>
                     <asp:Button CssClass="btn btn-primary btn-lg" ID="btnCompra" runat="server" Text="Ir a comprar" OnClick="btnCompra_Click" />

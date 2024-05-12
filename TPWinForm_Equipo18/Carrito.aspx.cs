@@ -9,17 +9,22 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
+
 namespace TPWinForm_Equipo18
 {
     public partial class Contact : Page
     {
         List<Articulo> listaCarrito = new List<Articulo>();
-
+        
         protected void Page_Load(object sender, EventArgs e)
         {
+
+            
             listaCarrito = (List<Articulo>)Session["Carrito"];
             decimal env = 5000;
             Title = "Mi carrito";
+            CarritoClase carro = new CarritoClase();
+            
             if(listaCarrito == null || listaCarrito.Count == 0)
             {
                 //ClientScript.RegisterStartupScript(this.GetType(), "mensaje", "alert('no posee articulos en el carrito');", true);
@@ -28,18 +33,21 @@ namespace TPWinForm_Equipo18
                 //Response.Redirect("ListadoArticulos.aspx");
                 
             }
-            else { 
-            listaCount.Text = "  (" + listaCarrito.Count.ToString() + " productos)";
-            lblSeguirComprando.Text = "seguir comprando";
+            else 
+            { 
+                listaCount.Text = "  (" + listaCarrito.Count.ToString() + " productos)";
+                lblSeguirComprando.Text = "seguir comprando";
 
-            GridCarrito.DataSource = listaCarrito;  
-            GridCarrito.DataBind();
-            lblsubtot.Text = "$" + subtotalArticulos().ToString();
-            decimal sub = subtotalArticulos();
-            lblenvio.Text = "$5000";           
-            decimal total = env + sub;
-            lbltotal.Text = "$" + total.ToString();
-
+                listaCarrito = carro.agrupar(listaCarrito);
+                
+                
+                lblsubtot.Text = "$" + subtotalArticulos().ToString();
+                decimal sub = subtotalArticulos();
+                lblenvio.Text = "$5000";           
+                decimal total = env + sub;
+                lbltotal.Text = "$" + total.ToString();
+                GridCarrito.DataSource = listaCarrito;
+                GridCarrito.DataBind();
             }
 
         }
@@ -49,7 +57,7 @@ namespace TPWinForm_Equipo18
 
             foreach (Articulo item in listaCarrito)
             {
-                subtotal += item.precio;
+                subtotal += item.total;
             }
                       
             return subtotal;
@@ -62,7 +70,7 @@ namespace TPWinForm_Equipo18
 
         protected void btnEliminar_Click(object sender, ImageClickEventArgs e)
         {
-            listaCarrito.RemoveAll(listaCarrito.Contains);
+            
         }
     }
 }

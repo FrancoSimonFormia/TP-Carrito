@@ -24,7 +24,12 @@ namespace dominio
         [DisplayName("Categoría")]
         public Categoria categoriaArticulo { get; set; }
         public string urlImagen { get; set; }
-
+        public decimal total { get; set; }
         public List<Imagen> imagenes { get; set; }
+        public int cantidad { get; set; }
+
+        
+
+        
     }
 }

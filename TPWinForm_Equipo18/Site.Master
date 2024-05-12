@@ -49,8 +49,7 @@
                 </button>
                 <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item"><a class="nav-link" runat="server" href="~/ListadoArticulos">ListadoArticulos</a></li>
-                        <li class="nav-item"><a class="nav-link" runat="server" href="~/Detalles">Detalle de Articulos</a></li>
+                        <li class="nav-item"><a class="nav-link" runat="server" href="~/ListadoArticulos">ListadoArticulos</a></li
                         <li class="nav-item">
                             <a class="nav-link btn btn-success" runat="server" href="~/Carrito">
                                 <svg width="16" height="16" fill="currentColor" class="bi bi-cart-check" viewBox="0 0 16 16">

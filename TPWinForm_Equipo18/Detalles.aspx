@@ -58,6 +58,7 @@
                         <asp:LinkButton ID="btnRestar" runat="server" CssClass="btn btn-default" OnClientClick="substract(); return false;"><i class="fas fa-minus"></i>&nbsp;</asp:LinkButton>
                         <!--<button id="case-minus" class="btn btn-default"><i class="fas fa-minus"></i></button> !-->
                         <asp:TextBox runat="server" ReadOnly="true" ID="txtCantidad" CssClass="form-control text-center" type="number" min="1" />
+                        <asp:HiddenField runat="server" ID="auxCantidad" />
                         <asp:LinkButton ID="btnSumar" runat="server" CssClass="btn btn-default" OnClientClick="add(); return false;"><i class="fas fa-plus"></i>&nbsp;</asp:LinkButton>
                         <!--<button  id="case-plus" class="btn btn-default"><i class="fas fa-plus"></i></button> !-->
                     </div>
@@ -72,9 +73,11 @@
         function add() {
 
             const txtCantidad = document.getElementById('<%: txtCantidad.ClientID %>');
+            const auxCantidad = document.getElementById('<%: auxCantidad.ClientID %>');
             let cantidad = parseInt(txtCantidad.value);
             cantidad = cantidad + 1;
             txtCantidad.value = cantidad;
+            auxCantidad.value = cantidad;
 
             console.log("Estuve aquí")
 
@@ -83,6 +86,7 @@
 
         function substract() {
             const txtCantidad = document.getElementById('<%: txtCantidad.ClientID %>');
+            const auxCantidad = document.getElementById('<%: auxCantidad.ClientID %>');
             let cantidad = parseInt(txtCantidad.value);
 
             if (cantidad > 1) {
@@ -90,6 +94,7 @@
             }
 
             txtCantidad.value = cantidad;
+            auxCantidad.value = cantidad;
 
             console.log("Estuve aquí")
 

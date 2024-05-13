@@ -96,20 +96,33 @@ namespace TPWinForm_Equipo18
 
         }
 
+
+        private void agregarAlCarrito(Articulo aniadir, List<Articulo> carritoCompras)
+        {
+            int cantidad = int.Parse(auxCantidad.Value);
+
+            for (int i = 0; i < cantidad; i++)
+            {
+                carritoCompras.Add(aniadir);
+            }
+
+        }
+
+
         protected void btnAgregar_Click(object sender, EventArgs e)
         {
            
             if (Session["Carrito"] == null)
             {
                 List<Articulo> carrito = new List<Articulo>();
-                carrito.Add(seleccion);
+                agregarAlCarrito(seleccion, carrito);
                 Session.Add("Carrito", carrito);
                 ClientScript.RegisterStartupScript(this.GetType(), "mensaje", "alert('Artículo agregado al carrito exitosamente');", true);
             }
             else
             {
                 List<Articulo> carrito = (List<Articulo>)Session["Carrito"];
-                carrito.Add(seleccion);
+                agregarAlCarrito(seleccion, carrito);
                 Session["Carrito"] = carrito;
                 ClientScript.RegisterStartupScript(this.GetType(), "mensaje", "alert('Artículo agregado al carrito exitosamente');", true);
 

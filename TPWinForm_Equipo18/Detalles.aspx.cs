@@ -89,6 +89,10 @@ namespace TPWinForm_Equipo18
             cargarImagenes();
             Title = seleccion.nombre;
 
+            if (!IsPostBack)
+                txtCantidad.Text = "1";
+
+
 
         }
 
@@ -114,5 +118,7 @@ namespace TPWinForm_Equipo18
 
 
         }
+
+
     }
 }

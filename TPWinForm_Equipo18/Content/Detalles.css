@@ -60,3 +60,9 @@
     justify-content: center;
     margin-left: 20px;
 }
+
+
+.input-group {
+    width: unset;
+    flex-wrap: nowrap;
+}

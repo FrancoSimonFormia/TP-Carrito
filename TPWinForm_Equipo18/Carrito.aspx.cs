@@ -77,55 +77,97 @@ namespace TPWinForm_Equipo18
 
         protected void btnSumar_Click(object sender, EventArgs e)
         {
-           CarritoClase carro = new CarritoClase();
-           
-                Button btn = (Button)sender;
-                int rowIndex = Convert.ToInt32(btn.CommandArgument);
-                Articulo aux = new Articulo();
-                foreach (Articulo item in listaCarrito)
-                {
-                    if(item.id == rowIndex)
-                    {
-                        aux = item;
-                        item.cantidad++; 
-                        listaCarrito.Add(aux);
-                        listaCarrito = carro.agrupar(listaCarrito);
-                        break;
-                    }
-                }
-
-            
-            
-            GridCarrito.DataSource = listaCarrito;
+            Button btn = (Button)sender;
+            List<Articulo> carrito = (List<Articulo>)Session["Carrito"];
+            int idArticulo = Convert.ToInt32(btn.CommandArgument);
+            Articulo articulo = carrito.FirstOrDefault(a => a.id == idArticulo);
+            decimal total = 0;
+            if(carrito.Count() > 1)
+            {
+                total = 5000;
+            }
+            if (articulo != null)
+            {     
+                articulo.cantidad++;
+                carrito.Add(articulo);
+                CarritoClase carro = new CarritoClase();
+                carrito = carro.agrupar(carrito);
+                decimal subTotal = carro.calcularTotal(carrito);
+                lblsubtot.Text = subTotal.ToString();
+                total += subTotal;
+                lbltotal.Text = total.ToString();
+            }         
+            listaCount.Text = "  (" + carrito.Count.ToString() + " productos)";
+            GridCarrito.DataSource = carrito;
             GridCarrito.DataBind();
-            
         }
 
+        protected void btnRestar_Click(object sender, EventArgs e)
+        {
+
+            Button btn = (Button)sender;
+            int idArticulo = Convert.ToInt32(btn.CommandArgument);
+            List<Articulo> carrito = (List<Articulo>)Session["Carrito"];
+            Articulo articulo = carrito.FirstOrDefault(a => a.id == idArticulo);
+            decimal total = 0;
+
+            if(carrito.Count() > 0)
+            {
+                total = 5000;
+            }
+            if (articulo != null && articulo.cantidad > 0)
+            {              
+                if (articulo.cantidad == 0)
+                {
+                    carrito.RemoveAll(a => a.id == idArticulo);
+                    //carrito.Remove(articulo);
+                    
+                }
+                articulo.cantidad--;
+                carrito.Remove(articulo);
+                CarritoClase carro = new CarritoClase();
+                carrito = carro.agrupar(carrito);
+                decimal subTotal = carro.calcularTotal(carrito);
+                lblsubtot.Text = subTotal.ToString();
+                total += subTotal;
+                lbltotal.Text = total.ToString();
+            }
+            GridCarrito.DataSource = carrito;
+            GridCarrito.DataBind();
+        }
         protected void btnEliminar_Click1(object sender, EventArgs e)
         {
-            Button btn = (Button)sender;
-            Articulo aux = new Articulo();
+            List<Articulo> carrito = (List<Articulo>)Session["Carrito"];
             CarritoClase carro = new CarritoClase();
-            int idAeliminar = int.Parse(btn.CommandArgument);
-            int x;
+            Button btn = (Button)sender;
+            decimal total = 0;
+            int idArticulo = Convert.ToInt32(btn.CommandArgument);
 
-            if(!IsPostBack)
+
+            Articulo articulo = carrito.FirstOrDefault(a => a.id == idArticulo);
+            if (articulo != null)
             {
-
-
-            foreach (Articulo item in listaCarrito)
+                carrito.RemoveAll(a => a.id == idArticulo);
+                articulo.cantidad = 0;
+                //carrito.Remove(articulo);
+            }
+            carrito = carro.agrupar(carrito);
+            decimal subTotal = carro.calcularTotal(carrito);
+            lblsubtot.Text = subTotal.ToString();
+            total += subTotal;
+            if(carrito.Count() > 0)
             {
-                if (item.id == idAeliminar)
-                    aux = item;
-                    x = listaCarrito.IndexOf(item);
-                    
-                    listaCarrito.RemoveAt(x);
-                    listaCarrito = carro.agrupar(listaCarrito);
+                total += 5000;
             }
+            else
+            {
+                total = 0;
+                lblenvio.Text = "0";
             }
-            //listaCarrito = carrito.agrupar(listaCarrito);
-            GridCarrito.DataSource = listaCarrito;
+            lbltotal.Text = total.ToString();
+            GridCarrito.DataSource = carrito;
             GridCarrito.DataBind();
         }
+
     }
 }

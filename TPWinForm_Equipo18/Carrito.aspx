@@ -28,7 +28,7 @@
 
      <asp:TemplateField HeaderText="sacar">
     <ItemTemplate>
-        <asp:Button CssClass="btn btn-danger rounded-5" ID="btnRestar" runat="server" Text="-" CommandName="RestarArticulo" CommandArgument='<%# Eval("id") %>' />
+        <asp:Button CssClass="btn btn-danger rounded-5" ID="btnRestar" runat="server" OnClick="btnRestar_Click" Text="-" CommandName="RestarArticulo" CommandArgument='<%# Eval("id") %>' />
     </ItemTemplate>
 </asp:TemplateField>
 

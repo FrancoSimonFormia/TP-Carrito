@@ -27,6 +27,12 @@ namespace dominio
 
         public void sumarAlCanasto(Articulo agregado)
         {
+
+            
+
+
+
+            
             foreach (ArticuloDeCarrito item in canasto)
             {
                 if(item.id == agregado.id)

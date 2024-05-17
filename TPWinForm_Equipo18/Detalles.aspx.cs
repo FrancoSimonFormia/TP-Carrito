@@ -28,6 +28,13 @@ namespace TPWinForm_Equipo18
             ///Podemos hacer que, en vez de mostrar estos datos, se cargue 
             ///un mensaje de "Articulo inexistente" en base a la gravedad
             ///del dato omitido
+            ///
+            if(seleccion == null)
+            {
+                seleccion = new Articulo();
+                Response.Redirect("ListadoArticulos.aspx");
+            }
+
             if (seleccion.marcaArticulo == null)
             {  
                 Marca porDefault = new Marca();

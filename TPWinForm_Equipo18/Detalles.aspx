@@ -16,7 +16,7 @@
                         <% for (int i = 0; i < seleccion.imagenes.Count; i++)
                             { %>
                         <div class="carousel-item active">
-                            <img src="<%: seleccion.imagenes[i] %>" class="w-100" alt="">
+                            <img src="<%: seleccion.imagenes[i] %>" onerror="this.onerror=null;this.src='<%: invalidUrl %>';" class="w-100" alt="">
                         </div>
                         <% } %>
                     </div>
@@ -33,7 +33,7 @@
                         <% for (int i = 0; i < seleccion.imagenes.Count; i++)
                             {  %>
                         <button type="button" class="active" data-bs-target="#carouselDemo" data-bs-slide-to="<%: i.ToString() %>">
-                            <img src="<%: seleccion.imagenes[i] %>" class="w-100" alt="">
+                            <img src="<%: seleccion.imagenes[i] %>" onerror="this.onerror=null;this.src='<%: invalidUrl %>';" class="w-100" alt="">
                         </button>
                         <% } %>
                     </div>

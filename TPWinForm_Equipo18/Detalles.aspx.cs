@@ -105,11 +105,18 @@ namespace TPWinForm_Equipo18
 
         private void agregarAlCarrito(Articulo aniadir, List<Articulo> carritoCompras)
         {
-            int cantidad = int.Parse(auxCantidad.Value);
-
-            for (int i = 0; i < cantidad; i++)
+            try
             {
-                carritoCompras.Add(aniadir);
+                int cantidad = int.Parse(auxCantidad.Value);
+
+                for (int i = 0; i < cantidad; i++)
+                {
+                    carritoCompras.Add(aniadir);
+                }
+            }
+            catch(Exception ex)
+            {
+                
             }
 
         }

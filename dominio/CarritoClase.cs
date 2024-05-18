@@ -28,11 +28,6 @@ namespace dominio
         public void sumarAlCanasto(Articulo agregado)
         {
 
-            
-
-
-
-            
             foreach (ArticuloDeCarrito item in canasto)
             {
                 if(item.id == agregado.id)
@@ -46,17 +41,17 @@ namespace dominio
 
         public void restarAlCanasto(Articulo restado)
         {
-            foreach (ArticuloDeCarrito item in canasto)
+            foreach (ArticuloDeCarrito x in canasto)
             {
-                if(item.id == restado.id)
+                if(x.id == restado.id)
                 {
-                    if(item.cantidad > 1)
+                    if(x.cantidad > 1)
                     {
-                        item.cantidad--;
+                        x.cantidad--;
                     }
                     else
                     {
-                        canasto.Remove(item);
+                        canasto.Remove(x);
                     }
                     return;
                 }
@@ -65,11 +60,11 @@ namespace dominio
 
         public void eliminarDeCanasto(int id)
         {
-            foreach (ArticuloDeCarrito item in canasto)
+            foreach (ArticuloDeCarrito x in canasto)
             {
-                if(item.id == id)
+                if(x.id == id)
                 {
-                    canasto.Remove(item);
+                    canasto.Remove(x);
                 }
             }
         }
@@ -77,9 +72,9 @@ namespace dominio
         public decimal calcularTotal(List<Articulo> lista)
         {
             decimal total = 0;
-            foreach (Articulo item in lista) 
+            foreach (Articulo x in lista) 
             {
-                total += item.precio * item.cantidad;
+                total += x.precio * x.cantidad;
             }
             return total;
         }
@@ -97,21 +92,21 @@ namespace dominio
         public List<Articulo> agrupar(List<Articulo> lista)
         {
             
-            var articulosAgrupadosTemp = lista.GroupBy(a => a.id)
-                                      .Select(g => new Articulo
+            var articulosAgrupadosTemp = lista.GroupBy(x => x.id)
+                                      .Select(y => new Articulo
                                       {
-                                          id = g.Key,
+                                          id = y.Key,
                                           
-                                          cantidad = g.Count(),
+                                          cantidad = y.Count(),
                                           
-                                          descripcion = g.First().descripcion,
-                                          nombre = g.First().nombre,
-                                          precio = g.First().precio,
-                                          imagenes = g.First().imagenes,
-                                          marcaArticulo = g.First().marcaArticulo,
-                                          categoriaArticulo = g.First().categoriaArticulo,
-                                          codigo = g.First().codigo,
-                                          total = g.Count() * g.First().precio
+                                          descripcion = y.First().descripcion,
+                                          nombre = y.First().nombre,
+                                          precio = y.First().precio,
+                                          imagenes = y.First().imagenes,
+                                          marcaArticulo = y.First().marcaArticulo,
+                                          categoriaArticulo = y.First().categoriaArticulo,
+                                          codigo = y.First().codigo,
+                                          total = y.Count() * y.First().precio
                                       })
                                       .ToList();
 

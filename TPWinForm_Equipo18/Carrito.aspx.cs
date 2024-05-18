@@ -183,7 +183,6 @@ namespace TPWinForm_Equipo18
             lblsubtot.Text = subTotal.ToString();
             total += subTotal;
             if(listaCarrito.Count > 0) 
-            //if(carrito.Count() > 0)
             {
                 total += 5000;
             }
@@ -192,6 +191,7 @@ namespace TPWinForm_Equipo18
                 total = 0;
                 lblenvio.Text = "0";
             }
+            
             Title = "Mi carrito";
             listaCount.Text = "  (" + listaCarrito.Count.ToString() + " productos)";
             lbltotal.Text = total.ToString();
@@ -201,3 +201,7 @@ namespace TPWinForm_Equipo18
 
     }
 }
+
+
+
+//Aca va cambio

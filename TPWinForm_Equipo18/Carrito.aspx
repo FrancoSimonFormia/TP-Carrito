@@ -14,7 +14,7 @@
         </a>
 
 
-        <asp:GridView ID="GridCarrito" runat="server" AutoGenerateColumns="false" CssClass="table align-baseline w-75 border-0">
+        <asp:GridView ID="GridCarrito" runat="server" AutoGenerateColumns="false" CssClass="table align-baseline w-75 border-0" OnRowDataBound="GridCarrito_RowDataBound">
             <Columns>
                 <asp:TemplateField HeaderText="">
                     <ItemTemplate>
@@ -102,8 +102,7 @@
 
     <script>
         // esta funcion abre la modal cuando es llamada desde el codebehind
-        function abrirModalCarritoVacio()
-        {
+        function abrirModalCarritoVacio() {
             let mensaje = document.getElementById("mensajeModal");
             mensaje.innerText = "No posee artículos en el carrito";
 

@@ -47,12 +47,12 @@ namespace TPWinForm_Equipo18
 
                     listaCarrito = carro.agrupar(listaCarrito);
 
-                    lblsubtot.Text = "$" + carro.calcularTotal(listaCarrito).ToString();
+                    lblsubtot.Text = "$" + carro.calcularTotal(listaCarrito).ToString("N2");
                     decimal sub = carro.calcularTotal(listaCarrito);
-                    lblenvio.Text = "$5000";    
+                    lblenvio.Text = "$5.000,00";    
                     decimal total = env + sub;
                     
-                    lbltotal.Text = "$" + total.ToString();
+                    lbltotal.Text = "$" + total.ToString("N2");
                 
                 
                 }
@@ -98,11 +98,11 @@ namespace TPWinForm_Equipo18
                 //carrito = carro.agrupar(carrito);
                 decimal subtotal = carro.calcularTotal(listaCarrito);
                 //decimal subTotal = carro.calcularTotal(carrito);
-                lblsubtot.Text = subtotal.ToString();
+                lblsubtot.Text = subtotal.ToString("N2");
                 //lblsubtot.Text = subTotal.ToString();
                 total += subtotal;
                 //total += subTotal;
-                lbltotal.Text = total.ToString();
+                lbltotal.Text = total.ToString("N2");
             }
 
             Title = "Mi carrito";
@@ -149,9 +149,9 @@ namespace TPWinForm_Equipo18
 
                  decimal subTotal = carro.calcularTotal(listaCarrito);
                  //decimal subTotal = carro.calcularTotal(carrito);
-                 lblsubtot.Text = subTotal.ToString();
+                 lblsubtot.Text = subTotal.ToString("N2");
                  total += subTotal;
-                 lbltotal.Text = total.ToString();
+                 lbltotal.Text = total.ToString("N2");
                  Response.Redirect("Carrito.aspx");       
                 //}
 
@@ -188,7 +188,7 @@ namespace TPWinForm_Equipo18
             //carrito = carro.agrupar(carrito);
             //decimal subTotal = carro.calcularTotal(carrito);
             decimal subTotal = carro.calcularTotal(listaCarrito);
-            lblsubtot.Text = subTotal.ToString();
+            lblsubtot.Text = subTotal.ToString("N2");
             total += subTotal;
             if(listaCarrito.Count > 0) 
             {
@@ -202,11 +202,26 @@ namespace TPWinForm_Equipo18
             
             Title = "Mi carrito";
             listaCount.Text = "  (" + listaCarrito.Count.ToString() + " productos)";
-            lbltotal.Text = total.ToString();
+            lbltotal.Text = total.ToString("N2");
             GridCarrito.DataSource = listaCarrito;
             GridCarrito.DataBind();
         }
 
+        protected void GridCarrito_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                // Para formatear el Precio Unitario
+                //// La tercera columna (índice 2) es el Precio Unitario
+                decimal precio = Convert.ToDecimal(DataBinder.Eval(e.Row.DataItem, "precio"));
+                e.Row.Cells[2].Text = precio.ToString("N2");
+
+                // Para formatear el Total Por Artículo
+                //// La séptima columna (índice 6) es el Total Por Artículo
+                decimal total = Convert.ToDecimal(DataBinder.Eval(e.Row.DataItem, "total"));
+                e.Row.Cells[6].Text = total.ToString("N2"); 
+            }
+        }
     }
 }
 

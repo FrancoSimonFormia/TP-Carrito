@@ -6,13 +6,14 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using dominio;
 using negocio;
+using static System.Net.WebRequestMethods;
 
 namespace TPWinForm_Equipo18
 {
     public partial class About : Page
     {
         public Articulo seleccion = new Articulo();
-        public List<Articulo> coleccion = new List<Articulo>();
+        public string invalidUrl = "https://static.vecteezy.com/system/resources/previews/004/639/366/non_2x/error-404-not-found-text-design-vector.jpg";
 
         private void inicializarArticulo()
         {
@@ -27,6 +28,13 @@ namespace TPWinForm_Equipo18
             ///Podemos hacer que, en vez de mostrar estos datos, se cargue 
             ///un mensaje de "Articulo inexistente" en base a la gravedad
             ///del dato omitido
+            ///
+            if(seleccion == null)
+            {
+                seleccion = new Articulo();
+                Response.Redirect("ListadoArticulos.aspx");
+            }
+
             if (seleccion.marcaArticulo == null)
             {  
                 Marca porDefault = new Marca();
@@ -82,8 +90,6 @@ namespace TPWinForm_Equipo18
 
         protected void Page_Load(object sender, EventArgs e)
          {
-            ArticuloNegocio negocio = new ArticuloNegocio();
-            coleccion = negocio.listar();
             inicializarArticulo();
             validarCampos();
             cargarImagenes();
@@ -99,11 +105,18 @@ namespace TPWinForm_Equipo18
 
         private void agregarAlCarrito(Articulo aniadir, List<Articulo> carritoCompras)
         {
-            int cantidad = int.Parse(auxCantidad.Value);
-
-            for (int i = 0; i < cantidad; i++)
+            try
             {
-                carritoCompras.Add(aniadir);
+                int cantidad = int.Parse(auxCantidad.Value);
+
+                for (int i = 0; i < cantidad; i++)
+                {
+                    carritoCompras.Add(aniadir);
+                }
+            }
+            catch(Exception ex)
+            {
+                
             }
 
         }
@@ -132,6 +145,9 @@ namespace TPWinForm_Equipo18
 
         }
 
-
+        protected void btnCancelar_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("ListadoArticulos.aspx");
+        }
     }
 }

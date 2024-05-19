@@ -16,7 +16,7 @@
                         <% for (int i = 0; i < seleccion.imagenes.Count; i++)
                             { %>
                         <div class="carousel-item active">
-                            <img src="<%: seleccion.imagenes[i] %>" class="w-100" alt="">
+                            <img src="<%: seleccion.imagenes[i] %>" onerror="this.onerror=null;this.src='<%: invalidUrl %>';" class="w-100" alt="">
                         </div>
                         <% } %>
                     </div>
@@ -33,7 +33,7 @@
                         <% for (int i = 0; i < seleccion.imagenes.Count; i++)
                             {  %>
                         <button type="button" class="active" data-bs-target="#carouselDemo" data-bs-slide-to="<%: i.ToString() %>">
-                            <img src="<%: seleccion.imagenes[i] %>" class="w-100" alt="">
+                            <img src="<%: seleccion.imagenes[i] %>" onerror="this.onerror=null;this.src='<%: invalidUrl %>';" class="w-100" alt="">
                         </button>
                         <% } %>
                     </div>
@@ -62,7 +62,10 @@
                         <asp:LinkButton ID="btnSumar" runat="server" CssClass="btn btn-default" OnClientClick="add(); return false;"><i class="fas fa-plus"></i>&nbsp;</asp:LinkButton>
                         <!--<button  id="case-plus" class="btn btn-default"><i class="fas fa-plus"></i></button> !-->
                     </div>
-                    <asp:Button Text="Agregar" CssClass="btn btn-success" ID="btnAgregar" runat="server" OnClick="btnAgregar_Click" />
+                    <div class="buttons">
+                        <asp:Button Text="Agregar" CssClass="btn btn-success" ID="btnAgregar" runat="server" OnClick="btnAgregar_Click" />
+                        <asp:Button Text="Cancelar" runat="server" CssClass="btn btn-secondary" ID="btnCancelar" OnClick="btnCancelar_Click" />
+                    </div>
                 </div>
             </div>
         </section>

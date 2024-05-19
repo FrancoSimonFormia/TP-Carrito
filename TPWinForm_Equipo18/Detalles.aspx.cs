@@ -130,14 +130,16 @@ namespace TPWinForm_Equipo18
                 List<Articulo> carrito = new List<Articulo>();
                 agregarAlCarrito(seleccion, carrito);
                 Session.Add("Carrito", carrito);
-                ClientScript.RegisterStartupScript(this.GetType(), "mensaje", "alert('Artículo agregado al carrito exitosamente');", true);
+                //ClientScript.RegisterStartupScript(this.GetType(), "mensaje", "alert('Artículo agregado al carrito exitosamente');", true);
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "abirModalArticuloAgregado();", true);
             }
             else
             {
                 List<Articulo> carrito = (List<Articulo>)Session["Carrito"];
                 agregarAlCarrito(seleccion, carrito);
                 Session["Carrito"] = carrito;
-                ClientScript.RegisterStartupScript(this.GetType(), "mensaje", "alert('Artículo agregado al carrito exitosamente');", true);
+                //ClientScript.RegisterStartupScript(this.GetType(), "mensaje", "alert('Artículo agregado al carrito exitosamente');", true);
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "abirModalArticuloAgregado();", true);
 
 
             }

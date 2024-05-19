@@ -70,6 +70,27 @@
             </div>
         </section>
 
+
+        <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="successModalLabel">Artículo Agregado</h5>
+                        <button type="button" class=" btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        El artículo ha sido agregado al carrito exitosamente.
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary " data-bs-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
     </main>
 
     <script>
@@ -102,6 +123,16 @@
             console.log("Estuve aquí")
 
             return false;
+        }
+
+        // esta funcion abre la modal cuando es llamada desde el codebehind
+        function abirModalArticuloAgregado() {
+            var myModal = new bootstrap.Modal(document.getElementById('successModal'), {
+                keyboard: false
+            });
+            myModal.show();
+
+
         }
 
     </script>

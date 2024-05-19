@@ -29,14 +29,14 @@ namespace TPWinForm_Equipo18
             ///un mensaje de "Articulo inexistente" en base a la gravedad
             ///del dato omitido
             ///
-            if(seleccion == null)
+            if (seleccion == null)
             {
                 seleccion = new Articulo();
                 Response.Redirect("ListadoArticulos.aspx");
             }
 
             if (seleccion.marcaArticulo == null)
-            {  
+            {
                 Marca porDefault = new Marca();
                 porDefault.descripcion = "N/A";
                 porDefault.id = -1;
@@ -67,7 +67,7 @@ namespace TPWinForm_Equipo18
             {
                 seleccion.codigo = "N/A";
             }
-            
+
 
         }
 
@@ -89,7 +89,7 @@ namespace TPWinForm_Equipo18
         }
 
         protected void Page_Load(object sender, EventArgs e)
-         {
+        {
             inicializarArticulo();
             validarCampos();
             cargarImagenes();
@@ -105,33 +105,38 @@ namespace TPWinForm_Equipo18
 
         private void agregarAlCarrito(Articulo aniadir, List<Articulo> carritoCompras)
         {
-            try
-            {
-                int cantidad = int.Parse(auxCantidad.Value);
+            //try
+            //{
+            string valorTexto = auxCantidad.Value.ToString(); ;
 
-                for (int i = 0; i < cantidad; i++)
-                {
-                    carritoCompras.Add(aniadir);
-                }
-            }
-            catch(Exception ex)
+            if (valorTexto == "")
+                valorTexto = "1";
+
+            int cantidad = int.Parse(valorTexto);
+
+            for (int i = 0; i < cantidad; i++)
             {
-                
+                carritoCompras.Add(aniadir);
             }
+            //}
+            //catch(Exception ex)
+            //{
+
+            //}
 
         }
 
 
         protected void btnAgregar_Click(object sender, EventArgs e)
         {
-           
+
             if (Session["Carrito"] == null)
             {
                 List<Articulo> carrito = new List<Articulo>();
                 agregarAlCarrito(seleccion, carrito);
                 Session.Add("Carrito", carrito);
                 //ClientScript.RegisterStartupScript(this.GetType(), "mensaje", "alert('Artículo agregado al carrito exitosamente');", true);
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "abirModalArticuloAgregado();", true);
+
             }
             else
             {
@@ -139,12 +144,10 @@ namespace TPWinForm_Equipo18
                 agregarAlCarrito(seleccion, carrito);
                 Session["Carrito"] = carrito;
                 //ClientScript.RegisterStartupScript(this.GetType(), "mensaje", "alert('Artículo agregado al carrito exitosamente');", true);
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "abirModalArticuloAgregado();", true);
-
 
             }
 
-
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "abirModalArticuloAgregado();", true);
         }
 
         protected void btnCancelar_Click(object sender, EventArgs e)

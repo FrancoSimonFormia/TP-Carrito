@@ -111,52 +111,58 @@ namespace TPWinForm_Equipo18
 
         protected void btnRestar_Click(object sender, EventArgs e)
         {
-            Button btn = (Button)sender;
-            int idArticulo = Convert.ToInt32(btn.CommandArgument);
-            List<Articulo> listaCarrito = (List<Articulo>)Session["Carrito"];
-            //List<Articulo> carrito = (List<Articulo>)Session["Carrito"];
-            //Articulo articulo = carrito.FirstOrDefault(a => a.id == idArticulo);
-            Articulo articulo = listaCarrito.FirstOrDefault(a => a.id == idArticulo);
-            decimal total = 0;
-                CarritoClase carro = new CarritoClase();
-            if(listaCarrito.Count > 0)
-            //if(carrito.Count() > 0)
-            {
-                total = 5000;
+             Button btn = (Button)sender;
+             int idArticulo = Convert.ToInt32(btn.CommandArgument);
+             List<Articulo> listaCarrito = (List<Articulo>)Session["Carrito"];
+             //List<Articulo> carrito = (List<Articulo>)Session["Carrito"];
+             //Articulo articulo = carrito.FirstOrDefault(a => a.id == idArticulo);
+             Articulo articulo = listaCarrito.FirstOrDefault(a => a.id == idArticulo);
+             decimal total = 0;
+                 CarritoClase carro = new CarritoClase();
+             if(listaCarrito.Count > 0)
+             //if(carrito.Count() > 0)
+             {
+                 total = 5000;
+             }
+
+             if (articulo != null)//) && articulo.cantidad > 0)
+             {              
+                 /*if (articulo.cantidad == 0)
+                 {
+                     listaCarrito.RemoveAll(a=>a.id == idArticulo);
+                     //carrito.RemoveAll(a => a.id == idArticulo);
+
+                     articulo.cantidad = 0;
+                 }
+                 else*/
+                 //{
+                  int cantidad = articulo.cantidad;
+                  articulo.cantidad--;
+
+                 listaCarrito.Remove(articulo);
+                 //carrito.Remove(articulo);
+
+                 //listaCarrito = carro.agrupar(listaCarrito);
+                 //carrito = carro.agrupar(carrito);
+
+                 decimal subTotal = carro.calcularTotal(listaCarrito);
+                 //decimal subTotal = carro.calcularTotal(carrito);
+                 lblsubtot.Text = subTotal.ToString();
+                 total += subTotal;
+                 lbltotal.Text = total.ToString();
+                 Response.Redirect("Carrito.aspx");       
+                //}
+
             }
+             Title = "Mi carrito";
+             listaCount.Text = "  (" + listaCarrito.Count.ToString() + " productos)";
+             listaCarrito = carro.agrupar(listaCarrito);
+             GridCarrito.DataSource = listaCarrito;
+             GridCarrito.DataBind();
 
-            if (articulo != null)//) && articulo.cantidad > 0)
-            {              
-                if (articulo.cantidad == 0)
-                {
-                    listaCarrito.RemoveAll(a=>a.id == idArticulo);
-                    //carrito.RemoveAll(a => a.id == idArticulo);
-                    
-                    articulo.cantidad = 0;
-                }
-                else
-                {
+           
 
-                articulo.cantidad--;
-                listaCarrito.Remove(articulo);
-                //carrito.Remove(articulo);
 
-                //listaCarrito = carro.agrupar(listaCarrito);
-                //carrito = carro.agrupar(carrito);
-
-                decimal subTotal = carro.calcularTotal(listaCarrito);
-                //decimal subTotal = carro.calcularTotal(carrito);
-                lblsubtot.Text = subTotal.ToString();
-                total += subTotal;
-                lbltotal.Text = total.ToString();
-                }
-
-            }
-            Title = "Mi carrito";
-            listaCount.Text = "  (" + listaCarrito.Count.ToString() + " productos)";
-            listaCarrito = carro.agrupar(listaCarrito);
-            GridCarrito.DataSource = listaCarrito;
-            GridCarrito.DataBind();
         }
         protected void btnEliminar_Click1(object sender, EventArgs e)
         {

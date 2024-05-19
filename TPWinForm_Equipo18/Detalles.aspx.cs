@@ -32,7 +32,7 @@ namespace TPWinForm_Equipo18
             if (seleccion == null)
             {
                 seleccion = new Articulo();
-                Response.Redirect("ListadoArticulos.aspx");
+                Response.Redirect("Default.aspx");
             }
 
             if (seleccion.marcaArticulo == null)
@@ -152,7 +152,7 @@ namespace TPWinForm_Equipo18
 
         protected void btnCancelar_Click(object sender, EventArgs e)
         {
-            Response.Redirect("ListadoArticulos.aspx");
+            Response.Redirect("Default.aspx");
         }
     }
 }

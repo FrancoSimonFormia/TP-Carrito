@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Contact" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Carrito.aspx.cs" Inherits="TPWinForm_Equipo18.Contact" %>
+﻿<%@ Page Title="Mi Carrito " Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Carrito.aspx.cs" Inherits="TPWinForm_Equipo18.Contact" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <link rel="stylesheet" type="text/css" href="estilosCarrito.css">
@@ -9,7 +9,7 @@
             <asp:Label ID="listaCount" runat="server" Text=""></asp:Label>
         </div>
 
-        <a href="ListadoArticulos">
+        <a href="Default.aspx">
             <asp:Label ID="lblSeguirComprando" runat="server" Text=""></asp:Label>
         </a>
 

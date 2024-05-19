@@ -24,7 +24,20 @@ namespace dominio
         [DisplayName("Categoría")]
         public Categoria categoriaArticulo { get; set; }
         public string urlImagen { get; set; }
-
+        public decimal total { get; set; }
         public List<Imagen> imagenes { get; set; }
+        public int cantidad { get; set; }
+        public decimal subtotal
+        {
+            get
+            {
+                return precio * cantidad;
+            }
+        }
+        /*
+            AGREGUE DOS PROPIEDADES, NO SE SI ES LO CORRECTO PERO PROBÉ VARIAS COSAS Y SOLO FUNCIONÓ ESTO 
+         */
+
+
     }
 }

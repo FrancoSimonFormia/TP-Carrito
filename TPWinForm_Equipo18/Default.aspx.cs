@@ -20,7 +20,7 @@ namespace TPWinForm_Equipo18
                 try
               {
                     ArticuloNegocio negocio = new ArticuloNegocio();
-                    Articulos = negocio.listar();
+                    Articulos = negocio.listar();                                                                                                     
                     Articulos = Articulos.GroupBy(a => a.id).Select(g => g.First()).ToList();
 
                 }

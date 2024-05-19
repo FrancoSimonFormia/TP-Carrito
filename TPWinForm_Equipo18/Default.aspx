@@ -33,7 +33,7 @@
                                 <img src="<%# ((Articulo)Container.DataItem).imagenes[0]?.Url %>" class="card-img-top" onerror="this.onerror=null;this.src='<%: invalidUrl %>';" alt="...">
                                 <h5 class="card-title"><%# Eval("nombre") %></h5>
                                 <p class="card-text"><%# Eval("descripcion") %></p>
-                                <p class="card-text"><%# Eval("precio") %></p>
+                                <p class="card-text"><%# Eval("precio", "{0:N2}") %></p>
                                 <asp:Button runat="server" ID="btnDetalles" Text="Detalles" CssClass="btn btn-primary" OnClick="btnDetalles_Click" CommandArgument='<%# Eval("id") %>' />
                                 <asp:Button runat="server" ID="btnAgregarCarrito" Text="Agregar al Carrito" CssClass=" btn btn-success " OnClick="btnAgregarCarrito_Click" CommandArgument='<%# Eval("id") %>' />
                             </div>

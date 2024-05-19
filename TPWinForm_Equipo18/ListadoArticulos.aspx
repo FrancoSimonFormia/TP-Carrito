@@ -29,7 +29,7 @@
                     <div class="col">
                         <div class="card" style="width: 18rem;">
                             <div class="card-body">
-                                <img src="<%# ((Articulo)Container.DataItem).imagenes[0]?.Url %>" class="card-img-top" alt="...">
+                                <img src="<%# ((Articulo)Container.DataItem).imagenes[0]?.Url %>" class="card-img-top" onerror="this.onerror=null;this.src='<%: invalidUrl %>';" alt="...">
                                 <h5 class="card-title"><%# Eval("nombre") %></h5>
                                 <p class="card-text"><%# Eval("descripcion") %></p>
                                 <p class="card-text"><%# Eval("precio") %></p>

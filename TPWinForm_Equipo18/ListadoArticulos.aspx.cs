@@ -12,6 +12,7 @@ namespace TPWinForm_Equipo18
     public partial class ListadoArticulos : System.Web.UI.Page
     {   
         public List<Articulo> Articulos { get; set; }
+        public string invalidUrl = "https://static.vecteezy.com/system/resources/previews/004/639/366/non_2x/error-404-not-found-text-design-vector.jpg";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)

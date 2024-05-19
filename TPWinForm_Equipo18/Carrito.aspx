@@ -18,7 +18,7 @@
                     <Columns>
                        <asp:TemplateField HeaderText="imagen">
     <ItemTemplate>
-        <asp:Image runat="server" ImageUrl='<%# Eval("imagenes[0].Url") %>' Alt="Imagen de artículo" Width="150px" Height="150px" />
+        <asp:Image runat="server" ImageUrl='<%# Eval("imagenes[0].Url") %>' Alt="Imagen de artículo" Width="150px" Height="150px" onerror="this.onerror=null;this.src='https://static.vecteezy.com/system/resources/previews/004/639/366/non_2x/error-404-not-found-text-design-vector.jpg';"/>
     </ItemTemplate>
 </asp:TemplateField>
 

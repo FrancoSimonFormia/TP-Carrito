@@ -53,7 +53,7 @@
                 <h2><%: seleccion.nombre %></h2>
                 <span><%: seleccion.codigo %> </span>
                 <p><%: seleccion.descripcion %></p>
-                <span>$<%: seleccion.precio %></span>
+                <span>$<%: seleccion.precio.ToString("N2") %></span>
 
                 <div class="product__filters">
                     <span>Marca: <%: seleccion.marcaArticulo.ToString() %></span>

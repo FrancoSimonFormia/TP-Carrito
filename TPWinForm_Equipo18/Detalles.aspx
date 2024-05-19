@@ -21,14 +21,23 @@
                         <% } %>
                     </div>
 
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselDemo" data-bs-slide="prev">
+
+                    <a class="carousel-control-prev" href="#carouselDemo" role="button" data-bs-slide="prev">
+                        <span><i class="fa fa-angle-left fa-2x" aria-hidden="true" style="color: #6c757d"></i></span>
+                    </a>
+
+                    <a class="carousel-control-next" href="#carouselDemo" role="button" data-bs-slide="next">
+                        <span><i class="fa fa-angle-right fa-2x" aria-hidden="true" style="color: #6c757d"></i></span>
+                    </a>
+
+                   <!-- <button class="carousel-control-prev" type="button" data-bs-target="#carouselDemo" data-bs-slide="prev">
                         <span class="carousel-control-prev-icon"></span>
                     </button>
 
                     <button class="carousel-control-next" type="button" data-bs-target="#carouselDemo" data-bs-slide="next">
                         <span class="carousel-control-next-icon"></span>
                     </button>
-
+                    !-->
                     <div class="carousel-indicators">
                         <% for (int i = 0; i < seleccion.imagenes.Count; i++)
                             {  %>

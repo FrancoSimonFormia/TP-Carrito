@@ -34,10 +34,11 @@ namespace TPWinForm_Equipo18
             
                 if(listaCarrito == null || listaCarrito.Count == 0)
                 {
-                     //ClientScript.RegisterStartupScript(this.GetType(), "mensaje", "alert('no posee articulos en el carrito');", true);
+                    //ClientScript.RegisterStartupScript(this.GetType(), "mensaje", "alert('no posee articulos en el carrito');", true);
                     //ClientScript.RegisterStartupScript(this.GetType(), "setTimeout", "setTimeout('2000')", true);
-                     ClientScript.RegisterStartupScript(this.GetType(), "mensaje", "alert('No posee artículos en el carrito'); window.location.href = 'ListadoArticulos.aspx';", true);
-                     //Response.Redirect("ListadoArticulos.aspx");
+                    //ClientScript.RegisterStartupScript(this.GetType(), "mensaje", "alert('No posee artículos en el carrito'); window.location.href = 'ListadoArticulos.aspx';", true);
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "abrirModalCarritoVacio();", true);
+                    //Response.Redirect("ListadoArticulos.aspx");
                 }
                 else 
                 { 
@@ -66,7 +67,8 @@ namespace TPWinForm_Equipo18
 
         protected void btnCompra_Click(object sender, EventArgs e)
         {
-            ClientScript.RegisterStartupScript(this.GetType(), "mensaje", "alert('Ventas suspendidas, intente nuevamente más tarde'); window.location.href = 'ListadoArticulos.aspx';", true);
+            //ClientScript.RegisterStartupScript(this.GetType(), "mensaje", "alert('Ventas suspendidas, intente nuevamente más tarde'); window.location.href = 'ListadoArticulos.aspx';", true);
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "abrirModalVentaSuspendida();", true);
         }
 
         protected void btnSumar_Click(object sender, EventArgs e)
